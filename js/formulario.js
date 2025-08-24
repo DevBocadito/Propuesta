@@ -1,7 +1,7 @@
 // ======================================================================
 // CONFIGURACIÓN PRINCIPAL
 // ======================================================================
-const API_URL = 'https://script.google.com/macros/s/AKfycbz_SDClUa86tLm1F_fOSotSdYd1X9bdQy5Jn5qbDgt69EArQ7X3NCYgGONBjbI1i4SVPA/exec'; // <-- ¡IMPORTANTE! Pega tu URL aquí.
+const API_URL = 'https://script.google.com/macros/s/AKfycbze58f6g0spQGYMVonYKvbm-pQtJPFox4sXLashfwgJG_0L4AQV3N0Xrj5icdsX3BtICw/exec'; // <-- ¡IMPORTANTE! Pega tu URL aquí.
 
 // ======================================================================
 // VARIABLES GLOBALES DE ESTADO
