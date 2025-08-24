@@ -1,5 +1,19 @@
 // URL de tu API GAS
-const API_URL = "https://script.google.com/macros/s/AKfycbz_SDClUa86tLm1F_fOSotSdYd1X9bdQy5Jn5qbDgt69EArQ7X3NCYgGONBjbI1i4SVPA/exec"; // <-- reemplaza con tu URL
+const API_URL = "https://script.google.com/macros/s/AKfycbz_SDClUa86tLm1F_fOSotSdYd1X9bdQy5Jn5qbDgt69EArQ7X3NCYgGONBjbI1i4SVPA/exec"; // <-- pon tu URL
+
+// Control de vistas
+function mostrarVista(nombre) {
+  document.querySelectorAll(".vista").forEach(v => v.classList.remove("activa"));
+  document.getElementById("vista-" + nombre).classList.add("activa");
+
+  // Cerrar menú al seleccionar en móvil
+  document.getElementById("sidebar").classList.remove("abierto");
+}
+
+// Sidebar toggle
+document.getElementById("menu-toggle").addEventListener("click", () => {
+  document.getElementById("sidebar").classList.toggle("abierto");
+});
 
 // Cargar datos iniciales
 document.addEventListener("DOMContentLoaded", async () => {
@@ -10,8 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (data.estado === "ok") {
       llenarSelect("producto", data.productos.map(p => p.nombre));
       llenarSelect("tipoCliente", data.tiposCliente);
-    } else {
-      console.error("Error:", data.mensaje);
     }
   } catch (err) {
     console.error("Error API:", err);
@@ -42,8 +54,10 @@ document.getElementById("formVenta").addEventListener("submit", async (e) => {
       body: JSON.stringify(venta)
     });
     const data = await res.json();
-    document.getElementById("respuesta").innerText = 
-      data.status === "ok" ? "Venta guardada con ID: " + data.idVenta : "Error: " + data.message;
+    document.getElementById("respuesta").innerText =
+      data.status === "ok"
+        ? "✅ Venta guardada con ID: " + data.idVenta
+        : "❌ Error: " + data.message;
   } catch (err) {
     console.error("Error al guardar venta:", err);
   }
