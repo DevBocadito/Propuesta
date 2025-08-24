@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Ventas</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Registro de Ventas</h1>
+
+  <form id="formVenta">
+    <label>Vendedor: <input type="text" id="vendedor" required></label><br>
+    <label>Cliente: 
+      <select id="tipoCliente"></select>
+    </label><br>
+    <label>Producto:
+      <select id="producto"></select>
+    </label><br>
+    <label>Cantidad: <input type="number" id="cantidad" value="1" required></label><br>
+    <button type="submit">Guardar Venta</button>
+  </form>
+
+  <div id="respuesta"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
