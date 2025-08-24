@@ -1,7 +1,7 @@
 // ======================================================================
 // CONFIGURACIÓN PRINCIPAL
 // ======================================================================
-const API_URL = 'AQUÍ_VA_LA_URL_DE_TU_WEB_APP'; // <-- ¡IMPORTANTE! Pega tu URL aquí.
+const API_URL = 'https://script.google.com/macros/s/AKfycbz_SDClUa86tLm1F_fOSotSdYd1X9bdQy5Jn5qbDgt69EArQ7X3NCYgGONBjbI1i4SVPA/exec'; // <-- ¡IMPORTANTE! Pega tu URL aquí.
 
 // ======================================================================
 // VARIABLES GLOBALES DE ESTADO
