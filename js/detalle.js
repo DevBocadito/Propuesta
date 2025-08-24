@@ -12,3 +12,4 @@ async function cargarVenta() {
     console.error("Error API:", err);
   }
 }
+
