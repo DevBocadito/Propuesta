@@ -22,7 +22,7 @@ document.getElementById("formVenta").addEventListener("submit", async (e) => {
         ? "✅ Venta guardada con ID: " + data.idVenta
         : "❌ Error: " + data.message;
   } catch (err) {
-    console.error("Error al guardar venta:", err);
+    console.error("Error:", err);
     document.getElementById("respuesta").innerText = "⚠️ Error en conexión";
   }
 });

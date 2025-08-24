@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("stockBajo").innerText = "2";
   document.getElementById("clientes").innerText = "12";
 
-  // Gráfico con datos mock
+  // Gráfico
   const ctx = document.getElementById("ventasChart").getContext("2d");
   new Chart(ctx, {
     type: "line",

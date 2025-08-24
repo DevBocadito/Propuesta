@@ -7,9 +7,9 @@
 
   <!-- Tailwind desde CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js desde CDN -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Estilos propios -->
+  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -70,11 +70,17 @@
         </div>
         <div>
           <label class="block mb-1">Tipo Cliente</label>
-          <select id="tipoCliente" class="w-full border rounded px-3 py-2"></select>
+          <select id="tipoCliente" class="w-full border rounded px-3 py-2">
+            <option>Mayorista</option>
+            <option>Minorista</option>
+          </select>
         </div>
         <div>
           <label class="block mb-1">Producto</label>
-          <select id="producto" class="w-full border rounded px-3 py-2"></select>
+          <select id="producto" class="w-full border rounded px-3 py-2">
+            <option>Producto A</option>
+            <option>Producto B</option>
+          </select>
         </div>
         <div>
           <label class="block mb-1">Cantidad</label>
@@ -85,19 +91,17 @@
       <p id="respuesta" class="text-center mt-3"></p>
     </section>
 
-    <!-- Vista Ventas -->
+    <!-- Otras vistas -->
     <section id="vista-ventas" class="vista hidden">
       <h2 class="text-lg font-bold mb-4">📂 Historial de Ventas</h2>
       <div id="listaVentas" class="bg-white shadow rounded-lg p-4">Cargando...</div>
     </section>
 
-    <!-- Vista Inventario -->
     <section id="vista-inventario" class="vista hidden">
       <h2 class="text-lg font-bold mb-4">📦 Inventario</h2>
       <div id="listaInventario" class="bg-white shadow rounded-lg p-4">Cargando...</div>
     </section>
 
-    <!-- Vista Configuración -->
     <section id="vista-configuracion" class="vista hidden">
       <h2 class="text-lg font-bold mb-4">⚙️ Configuración</h2>
       <p>Aquí irán las opciones de configuración del negocio.</p>

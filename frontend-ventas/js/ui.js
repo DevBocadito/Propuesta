@@ -5,8 +5,8 @@ function mostrarMensaje(msg, tipo="info") {
     error: "bg-red-100 text-red-700"
   };
   const div = document.createElement("div");
-  div.className = `p-2 rounded mb-2 ${colores[tipo]}`;
+  div.className = `p-2 rounded mb-2 fixed top-2 right-2 shadow ${colores[tipo]}`;
   div.innerText = msg;
-  document.body.prepend(div);
+  document.body.appendChild(div);
   setTimeout(() => div.remove(), 3000);
 }

@@ -1,8 +1,7 @@
 async function apiGet(action, params = {}) {
   const url = new URL(API_URL);
   url.searchParams.append("action", action);
-  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
+  Object.keys(params).forEach(k => url.searchParams.append(k, params[k]));
   const res = await fetch(url);
   return res.json();
 }
