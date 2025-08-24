@@ -1,0 +1,198 @@
+/* ================================================================== */
+/* ESTILOS GENERALES Y VARIABLES                                      */
+/* ================================================================== */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0069d9;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+  --light-gray: #f8f9fa; /* Color de fondo principal */
+  --medium-gray: #e9ecef;
+  --dark-gray: #6c757d;
+  --text-color: #343a49;
+  --white-color: #ffffff; /* Color para las tarjetas */
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --transition-speed: 0.2s;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--light-gray);
+  margin: 0;
+  padding: 1.5rem;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ================================================================== */
+/* NUEVO ESTILO DE TARJETA (CARD)                                     */
+/* ================================================================== */
+.card {
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow var(--transition-speed);
+}
+
+.card:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+
+.card h2, .card h3, .card legend {
+  border-bottom: 1px solid var(--medium-gray);
+  padding-bottom: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.card legend {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  width: 100%;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ================================================================== */
+/* ESTILOS DE FORMULARIO                                              */
+/* ================================================================== */
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--dark-gray);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+button#btn-agregar-producto { 
+  background-color: var(--primary-color);
+  color: var(--white-color); 
+}
+button#btn-agregar-producto:hover { 
+  background-color: var(--primary-hover); 
+}
+button[type="submit"] { 
+  background-color: var(--success-color); 
+  color: var(--white-color); 
+  width: 100%; 
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+button[type="submit"]:hover { 
+  background-color: #218838; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+th, td {
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--medium-gray);
+}
+th {
+  font-weight: 600;
+}
+
+#total-general {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  border-top: 2px solid var(--medium-gray);
+  padding-top: 1rem;
+}
+
+#notification-area { position: fixed; top: 20px; right: 20px; z-index: 1000; width: 320px; }
+.notification { padding: 1rem; margin-bottom: 1rem; border-radius: var(--border-radius); color: var(--white-color); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.notification.success { background-color: var(--success-color); }
+.notification.error { background-color: var(--danger-color); }
+
+@media (max-width: 768px) {
+  body { padding: 0.5rem; }
+  .card { padding: 1rem; }
+  .form-grid { grid-template-columns: 1fr; gap: 1rem; }
+  table thead { display: none; }
+  table tr { 
+    display: block; 
+    margin-bottom: 1rem; 
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius); 
+  }
+  table td { 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    text-align: right; 
+    padding: 0.8rem 1rem; 
+    border-bottom: 1px dashed var(--medium-gray);
+  }
+  table td:last-child { border-bottom: none; }
+  table td::before { 
+    content: attr(data-label); 
+    font-weight: 600; 
+    text-align: left; 
+  }
+}
