@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piloto Finanzas</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    .loader {
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .loader h1 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      width: 100%;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+    .percent {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <h1>🚀 Iniciando Piloto Finanzas...</h1>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    <div class="percent" id="percent">0%</div>
+  </div>
+
+  <script>
+    let progress = 0;
+    const fill = document.getElementById("progress");
+    const percent = document.getElementById("percent");
+
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 15) + 5; // suma 5-20%
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setTimeout(() => {
+          window.location.href = "app/dashboard.html";
+        }, 500); // espera medio segundo antes de redirigir
+      }
+      fill.style.width = progress + "%";
+      percent.textContent = progress + "%";
+    }, 400);
+  </script>
+</body>
+</html>
