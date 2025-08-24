@@ -2,87 +2,116 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel de Control - Ventas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- importante para celular -->
+  <title>Panel de Control - Mi Negocio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Estilos propios -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-  <!-- Contenedor principal -->
-  <div class="app-container">
-    
-    <!-- Header -->
-    <header class="app-header">
-      <h1>📊 Mi Negocio</h1>
-      <button id="menu-toggle" class="menu-btn">☰</button>
-    </header>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- Sidebar desplegable -->
-    <nav id="sidebar" class="sidebar">
-      <ul>
-        <li><a href="#" onclick="mostrarVista('dashboard')">🏠 Dashboard</a></li>
-        <li><a href="#" onclick="mostrarVista('nuevaVenta')">📝 Registrar Venta</a></li>
-        <li><a href="#" onclick="mostrarVista('ventas')">📂 Ventas</a></li>
-        <li><a href="#" onclick="mostrarVista('inventario')">📦 Inventario</a></li>
-        <li><a href="#" onclick="mostrarVista('configuracion')">⚙️ Configuración</a></li>
-      </ul>
-    </nav>
+  <!-- Header -->
+  <header class="flex items-center justify-between bg-white shadow px-4 py-3">
+    <h1 class="text-xl font-bold text-green-600">📊 Mi Negocio</h1>
+    <button id="menu-toggle" class="text-2xl">☰</button>
+  </header>
 
-    <!-- Contenido -->
-    <main class="app-main">
-      
-      <!-- Vista Dashboard -->
-      <section id="vista-dashboard" class="vista activa">
-        <h2>Dashboard</h2>
-        <div class="cards">
-          <div class="card">💰 Ventas Hoy<br><span id="ventasHoy">--</span></div>
-          <div class="card">📦 Stock Bajo<br><span id="stockBajo">--</span></div>
-          <div class="card">👥 Clientes<br><span id="clientes">--</span></div>
+  <!-- Sidebar -->
+  <nav id="sidebar" class="fixed top-0 right-[-260px] w-60 h-full bg-green-700 text-white p-4 transition-all duration-300 z-50">
+    <h2 class="text-lg font-semibold mb-4">Menú</h2>
+    <ul class="space-y-2">
+      <li><a href="#" onclick="mostrarVista('dashboard')" class="block py-2 px-3 rounded hover:bg-green-600">🏠 Dashboard</a></li>
+      <li><a href="#" onclick="mostrarVista('nuevaVenta')" class="block py-2 px-3 rounded hover:bg-green-600">📝 Registrar Venta</a></li>
+      <li><a href="#" onclick="mostrarVista('ventas')" class="block py-2 px-3 rounded hover:bg-green-600">📂 Ventas</a></li>
+      <li><a href="#" onclick="mostrarVista('inventario')" class="block py-2 px-3 rounded hover:bg-green-600">📦 Inventario</a></li>
+      <li><a href="#" onclick="mostrarVista('configuracion')" class="block py-2 px-3 rounded hover:bg-green-600">⚙️ Configuración</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="flex-1 p-4 space-y-6">
+
+    <!-- Vista Dashboard -->
+    <section id="vista-dashboard" class="vista">
+      <h2 class="text-lg font-bold mb-4">Dashboard</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white shadow rounded-lg p-4 text-center">
+          <p class="text-gray-500">💰 Ventas Hoy</p>
+          <h3 id="ventasHoy" class="text-2xl font-bold">--</h3>
         </div>
-        <button class="primary-btn" onclick="mostrarVista('nuevaVenta')">➕ Registrar Venta</button>
-      </section>
+        <div class="bg-white shadow rounded-lg p-4 text-center">
+          <p class="text-gray-500">📦 Stock Bajo</p>
+          <h3 id="stockBajo" class="text-2xl font-bold">--</h3>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4 text-center">
+          <p class="text-gray-500">👥 Clientes</p>
+          <h3 id="clientes" class="text-2xl font-bold">--</h3>
+        </div>
+      </div>
+      <div class="bg-white shadow rounded-lg p-4">
+        <canvas id="ventasChart" height="100"></canvas>
+      </div>
+      <div class="mt-4 text-center">
+        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="mostrarVista('nuevaVenta')">➕ Registrar Venta</button>
+      </div>
+    </section>
 
-      <!-- Vista Nueva Venta -->
-      <section id="vista-nuevaVenta" class="vista">
-        <h2>📝 Registrar Venta</h2>
-        <form id="formVenta" class="form-card">
-          <label>Vendedor</label>
-          <input type="text" id="vendedor" placeholder="Ej: Juan Pérez" required>
+    <!-- Vista Nueva Venta -->
+    <section id="vista-nuevaVenta" class="vista hidden">
+      <h2 class="text-lg font-bold mb-4">📝 Registrar Venta</h2>
+      <form id="formVenta" class="bg-white shadow rounded-lg p-4 space-y-4 max-w-md mx-auto">
+        <div>
+          <label class="block mb-1">Vendedor</label>
+          <input type="text" id="vendedor" class="w-full border rounded px-3 py-2" placeholder="Ej: Juan Pérez" required>
+        </div>
+        <div>
+          <label class="block mb-1">Tipo Cliente</label>
+          <select id="tipoCliente" class="w-full border rounded px-3 py-2"></select>
+        </div>
+        <div>
+          <label class="block mb-1">Producto</label>
+          <select id="producto" class="w-full border rounded px-3 py-2"></select>
+        </div>
+        <div>
+          <label class="block mb-1">Cantidad</label>
+          <input type="number" id="cantidad" class="w-full border rounded px-3 py-2" value="1" required>
+        </div>
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Guardar Venta</button>
+      </form>
+      <p id="respuesta" class="text-center mt-3"></p>
+    </section>
 
-          <label>Tipo Cliente</label>
-          <select id="tipoCliente"></select>
+    <!-- Vista Ventas -->
+    <section id="vista-ventas" class="vista hidden">
+      <h2 class="text-lg font-bold mb-4">📂 Historial de Ventas</h2>
+      <div id="listaVentas" class="bg-white shadow rounded-lg p-4">Cargando...</div>
+    </section>
 
-          <label>Producto</label>
-          <select id="producto"></select>
+    <!-- Vista Inventario -->
+    <section id="vista-inventario" class="vista hidden">
+      <h2 class="text-lg font-bold mb-4">📦 Inventario</h2>
+      <div id="listaInventario" class="bg-white shadow rounded-lg p-4">Cargando...</div>
+    </section>
 
-          <label>Cantidad</label>
-          <input type="number" id="cantidad" value="1" required>
+    <!-- Vista Configuración -->
+    <section id="vista-configuracion" class="vista hidden">
+      <h2 class="text-lg font-bold mb-4">⚙️ Configuración</h2>
+      <p>Aquí irán las opciones de configuración del negocio.</p>
+    </section>
 
-          <button type="submit" class="primary-btn">Guardar Venta</button>
-        </form>
-        <p id="respuesta"></p>
-      </section>
+  </main>
 
-      <!-- Vista Ventas -->
-      <section id="vista-ventas" class="vista">
-        <h2>📂 Historial de Ventas</h2>
-        <p>(Aquí se listarán las ventas registradas)</p>
-      </section>
-
-      <!-- Vista Inventario -->
-      <section id="vista-inventario" class="vista">
-        <h2>📦 Inventario</h2>
-        <p>(Aquí se mostrará el stock de productos)</p>
-      </section>
-
-      <!-- Vista Configuración -->
-      <section id="vista-configuracion" class="vista">
-        <h2>⚙️ Configuración</h2>
-        <p>(Aquí irán las opciones de configuración del negocio)</p>
-      </section>
-
-    </main>
-  </div>
-
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/ventas.js"></script>
+  <script src="js/inventario.js"></script>
+  <script src="js/ui.js"></script>
 </body>
 </html>
