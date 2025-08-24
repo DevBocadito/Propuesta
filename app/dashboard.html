@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piloto Finanzas - Dashboard</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Contenido dinámico -->
+    <main id="app-content">
+      <h2>Bienvenido 👋</h2>
+      <p>Selecciona una opción en el menú lateral.</p>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/router.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadComponent("navbar", "components/navbar.html");
+      loadComponent("sidebar", "components/sidebar.html");
+    });
+  </script>
+</body>
+</html>
