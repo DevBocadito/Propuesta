@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Ventas Profesional</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div id="notification-area"></div>
@@ -90,8 +90,16 @@
         </fieldset>
       </div>
     </form>
+</div> <div id="modal-confirmacion" class="modal-overlay">
+  <div class="modal-content">
+    <h3 class="modal-title">Confirmar Venta</h3>
+    <div id="resumen-confirmacion"></div>
+    <div class="modal-buttons">
+      <button type="button" id="btn-cancelar-venta" class="btn-secondary">Cancelar</button>
+      <button type="button" id="btn-confirmar-venta" class="btn-primary">Confirmar Venta</button>
+      </div>
+    </div>
   </div>
-
   <script src="js/utils.js"></script>
   <script src="js/formulario.js"></script>
 </body>
